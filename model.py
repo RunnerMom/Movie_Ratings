@@ -19,6 +19,7 @@ class User(Base):
     zipcode = Column(String(15), nullable=True)
 
 class Movie(Base):
+    import datetime
     __tablename__= "movies"     #when do we use u.item instead of "movie?"
 
     id = Column(Integer, primary_key = True)
@@ -40,8 +41,8 @@ def connect():
     global ENGINE
     global Session
 
-    ENGINE = create_engine("sqlite:///ratings.db", echo = True)
-    Session = sessionmaker (bind = ENGINE)
+    ENGINE = create_engine("sqlite:///ratings.db", echo=True)
+    Session = sessionmaker(bind=ENGINE)
 
     return Session()
 
