@@ -31,9 +31,10 @@ class Rating(Base):             #u.data = "rating" ??
     __tablename__ = "ratings"
 
     id = Column(Integer, primary_key = True)
-    movie_id = Column(Integer, nullable = True)
     user_id = Column(Integer, nullable = True)
+    movie_id = Column(Integer, nullable = True)
     rating = Column(Integer, nullable = True)
+    timestamp = Column(Integer, nullable = True)
 
 ### End class declarations
 
