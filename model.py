@@ -12,11 +12,11 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key = True)
-    email = Column(String(64), nullable = True)
-    password = Column(String(64), nullable=True)
-    age = Column(Integer, nullable=True)
-    zipcode = Column(String(15), nullable=True)
+    user_id = Column(Integer, primary_key = True)
+    age = Column(Integer, nullable = True)
+    gender = Column(String(1), nullable=True)
+    occupation = Column(String(64), nullable=True)
+    zipcode = Column(String(5), nullable=True)
 
 class Movie(Base):
     import datetime
