@@ -30,18 +30,21 @@ def load_movies(session):
         for row in movie_data:
 
             row_time = row[2]
-
-            if row_time != "%d-%b-%Y"
+            row_name =row[1]
+            row_name =row_name.decode("latin-1")
+            print row_name
+            # try to make an error handler to skip data that does not have proper date formatting
+            if row_time == None:
                 continue
             else:
                 get_date = (time.strptime(row_time, "%d-%b-%Y"))
-                print type(get_date)
+
 
                 last_date = datetime.fromtimestamp(time.mktime(get_date))
-                print type(last_date)
-                # movie_record = model.Movie(name=row[1], released_at=(last_date), imdb_url=row[3])
-            #     session.add(movie_record)
-            # session.commit()
+       
+                movie_record = model.Movie(name=row_name, released_at=(last_date), imdb_url=row[3])
+                session.add(movie_record)
+            session.commit()
 
 # def load_ratings(session):
 #     # use u.data
