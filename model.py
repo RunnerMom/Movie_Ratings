@@ -42,7 +42,7 @@ def connect():
     global ENGINE
     global Session
 
-    ENGINE = create_engine("sqlite:///ratings.db", echo=True)
+    ENGINE = create_engine("sqlite:///ratings.db", echo=False)
     Session = sessionmaker(bind=ENGINE)
 
     return Session()
