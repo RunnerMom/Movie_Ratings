@@ -1,6 +1,6 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, Date
+from sqlalchemy import Column, Integer, String, Date, DateTime
 from sqlalchemy.orm import sessionmaker
 
 ENGINE = None
@@ -24,7 +24,7 @@ class Movie(Base):
 
     id = Column(Integer, primary_key = True)
     name = Column(String(64), nullable = True)
-    released_at = Column(Date(), nullable = True)   # look up in tutorial
+    released_at = Column(Date, nullable = True)   # look up in tutorial
     imdb_url = Column(String(64), nullable = True)
 
 class Rating(Base):             #u.data = "rating" ??
@@ -34,7 +34,7 @@ class Rating(Base):             #u.data = "rating" ??
     user_id = Column(Integer, nullable = True)
     movie_id = Column(Integer, nullable = True)
     rating = Column(Integer, nullable = True)
-    timestamp = Column(Integer, nullable = True)
+    timestamp = Column(DateTime, nullable = True)
 
 ### End class declarations
 
@@ -42,7 +42,7 @@ def connect():
     global ENGINE
     global Session
 
-    ENGINE = create_engine("sqlite:///ratings.db", echo=False)
+    ENGINE = create_engine("sqlite:///ratings.db", echo=True)
     Session = sessionmaker(bind=ENGINE)
 
     return Session()

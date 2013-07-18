@@ -8,10 +8,15 @@ from sqlalchemy import Column, Integer, String, Date
 from sqlalchemy.orm import sessionmaker
 
 def convert_date_string(date_string):
-    print date_string
+    # print date_string
     dt = datetime.strptime(date_string, "%d-%b-%Y")
-    print dt.date() 
     return dt.date()
+
+def convert_epoch_time(date_string):
+ 
+    epoch = datetime.fromtimestamp(int(date_string))
+  #  print epoch.date()
+    return epoch
 
 def load_users(session):
     # open file
@@ -30,7 +35,7 @@ def load_users(session):
 
 def load_movies(session):
     # use u.item
-    with open('seed_data/u.itemtest') as csvfile:
+    with open('seed_data/u.item') as csvfile:
         movie_data = csv.reader(csvfile, delimiter='|')
         print ("Loading movie db. This could take several minutes")
         for row in movie_data:
@@ -50,7 +55,7 @@ def load_movies(session):
 
             if row_time:
                 last_date = convert_date_string(row_time) #creates a Python datetime object
-                print last_date 
+               # print last_date 
                 movie_record = model.Movie(id = row[0], name=movie_title, released_at=last_date, imdb_url=row[4]) #populates movie record
                 session.add(movie_record)
             session.commit()
@@ -62,9 +67,10 @@ def load_ratings(session):
         for row in ratings_data:
 
             row_timestamp=row[3]
+            new_timestamp = convert_epoch_time(row_timestamp)
 
            #  print type(row_timestamp)
-            ratings_record = model.Rating(user_id=row[0], movie_id=row[1], rating=row[2], timestamp=row_timestamp)
+            ratings_record = model.Rating(user_id=row[0], movie_id=row[1], rating=row[2], timestamp=new_timestamp)
             session.add(ratings_record)
         session.commit()
            
@@ -72,7 +78,7 @@ def main(session):
     # You'll call each of the load_* functions with the session as an argument
     # load_users(session)
     load_movies(session)
-    # load_ratings(session)
+    load_ratings(session)
 
 if __name__ == "__main__":
     s= model.connect()
