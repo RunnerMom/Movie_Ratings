@@ -1,6 +1,6 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, Date
 from sqlalchemy.orm import sessionmaker
 
 ENGINE = None
@@ -24,7 +24,7 @@ class Movie(Base):
 
     id = Column(Integer, primary_key = True)
     name = Column(String(64), nullable = True)
-    released_at = Column(DateTime(), nullable = True)   # look up in tutorial
+    released_at = Column(Date(), nullable = True)   # look up in tutorial
     imdb_url = Column(String(64), nullable = True)
 
 class Rating(Base):             #u.data = "rating" ??

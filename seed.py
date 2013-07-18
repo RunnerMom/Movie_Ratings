@@ -8,9 +8,9 @@ from sqlalchemy import Column, Integer, String, Date
 from sqlalchemy.orm import sessionmaker
 
 def convert_date_string(date_string):
-    # print date_string
+    print date_string
     dt = datetime.strptime(date_string, "%d-%b-%Y")
- 
+    print dt.date() 
     return dt.date()
 
 def load_users(session):
@@ -49,9 +49,9 @@ def load_movies(session):
             # try to make an error handler to skip data that does not have proper date formatting
 
             if row_time:
-                # last_date = convert_date_string(row_time) #creates a Python datetime object
-                # print last_date, type(last_date)
-                movie_record = model.Movie(id = row[0], name=movie_title, released_at=datetime.strptime(row_time, "%d-%b-%Y").date(), imdb_url=row[4]) #populates movie record
+                last_date = convert_date_string(row_time) #creates a Python datetime object
+                print last_date 
+                movie_record = model.Movie(id = row[0], name=movie_title, released_at=last_date, imdb_url=row[4]) #populates movie record
                 session.add(movie_record)
             session.commit()
 
