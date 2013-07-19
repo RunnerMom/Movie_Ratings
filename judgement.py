@@ -30,8 +30,11 @@ def add_user():
     model.session.commit()
     return render_template("user_added.html", user_id=user.user_id)
 
-
 # view a list of users
+@app.route("/users")
+def show_users():
+    user_list = model.session.query(model.User).all()
+    return render_template("users.html", users=user_list)
 # click on a user and view list of movies they've rated, as well as the ratings
 # be able to log in as a user
 # when logged in, be able to add or update a personal rating for a movie.
