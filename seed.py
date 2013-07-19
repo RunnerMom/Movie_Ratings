@@ -58,7 +58,7 @@ def load_movies(session):
                # print last_date 
                 movie_record = model.Movie(id = row[0], name=movie_title, released_at=last_date, imdb_url=row[4]) #populates movie record
                 session.add(movie_record)
-            session.commit()
+        session.commit()
 
 def load_ratings(session):
     # use u.data
@@ -76,9 +76,9 @@ def load_ratings(session):
            
 def main(session):
     # You'll call each of the load_* functions with the session as an argument
-    # load_users(session)
+    load_users(session)
     load_movies(session)
-    load_ratings(session)
+    # load_ratings(session)
 
 if __name__ == "__main__":
     s= model.connect()
