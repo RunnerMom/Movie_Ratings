@@ -1,0 +1,7 @@
+
+<html>
+    <h2>Gowri's movie ratings app</h2>
+    {% for user in users %}
+       <h2> User  {{ user.user_id }}, age {{ user.age }} has {{ user.rating|length}} ratings</h2>
+    {% endfor %}
+</html>
