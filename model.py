@@ -20,12 +20,12 @@ class User(Base):
     occupation = Column(String(64), nullable=True)
     zipcode = Column(String(5), nullable=True)
 
-    def add_user(self, age, gender, occupation, zipcode):
-        self.age = age
-        self.gender = gender
-        self.occupation = occupation
-        self.zipcode = zipcode
-    session.commit()
+    # def add_user(self, age, gender, occupation, zipcode):
+    #     self.age = age
+    #     self.gender = gender
+    #     self.occupation = occupation
+    #     self.zipcode = zipcode
+    #     session.commit()
 
 
 class Movie(Base):
