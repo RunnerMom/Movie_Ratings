@@ -1,0 +1,31 @@
+
+
+<div class ="header", style="font-family: 'Tangerine', serif; font-size:36px;">
+    <h2>List of Users in Gowri's Movie Ratings App</h2>
+    <p>
+</div>
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="span8">
+                <div class="user">
+                   {% for user in users %}
+                        <h5> User  {{ user.user_id }}, 
+                            age {{ user.age }} 
+                            has {{ user.rating|length}} ratings
+                        </h5>
+                    {% endfor %}
+                </div>
+</div>
+
+
+<div class = "container">
+    <a href="/" class="url fn" itemprop="url" rel="author">
+        <span itemprop="title">
+        RETURN TO HOME
+        </span>
+    </a>
+</div>
+
+{% endblock %}
