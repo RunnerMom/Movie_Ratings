@@ -14,13 +14,25 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     user_list = model.session.query(model.User).limit(20).all()
-    return render_template("user_list.html", users=user_list)
+#    return render_template("user_list.html", users=user_list)
+    return render_template("index.html")
 
-if __name__== "__main__":
-    app.run(debug=True)
 # ASSIGNMENT: build out some CRUDL-style views for User and Ratings objects
 # be able to create a new user
+@app.route("/add_user")
+def add_user():
+    age = request.args.get("age")
+    gender = request.args.get("gender")
+    occupation = request.args.get("occupation")
+    zipcode = request.args.get("zipcode")
+    user = model.User(age=age, gender=gender, occupation=occupation, zipcode=zipcode)
+    user.add_user(age, gender, occupation, zipcode)
+    return redirect("/")
+
 # view a list of users
 # click on a user and view list of movies they've rated, as well as the ratings
 # be able to log in as a user
 # when logged in, be able to add or update a personal rating for a movie.
+
+if __name__== "__main__":
+    app.run(debug=True)
