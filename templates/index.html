@@ -4,33 +4,34 @@
 <div class="container">
     <div class="row">
         <div class="span12">
-            <h1 class="header">Vote on Hackbright Ideas</h1>
+            <h1 class="header">Gowri's Movie Ratings App</h1>
         </div>
         <div class="span4">
-            <h3><i class="icon-plus-sign"></i> Add Post</h3>
-            <form action="/add_post">
-                <input type="text" name="title" placeholder="Title" />
+            <h3><i class="icon-plus-sign"></i> Add User</h3>
+            <form action="/add_user">
+                <input type="text" name="age" placeholder="Age" />
                 <br />
-                <input type="text" name="author" placeholder="Author" />
+                <input type="text" name="gender" placeholder="Gender" />
                 <br />
-                <textarea name="body" placeholder="Post Body"></textarea>
+                <input type="text" name="occupation" placeholder="Occupation" />
                 <br />
-                <input class="btn" type="submit" value="Add Post" />
+                <input type="text" name="zipcode" placeholder="Zipcode" />
+                <br />
+                <input class="btn" type="submit" value="Add User" />
             </form>
         </div>
 
         <div class="span8">
-            {% if posts %}
-            {% for post in posts %}
-                <div class="post">
-                    <h3>{{post[1]}}</h3>
-                    <span>Author: {{post[3]}}</span>
-                    <br />
-                    <span>Created At: {{post[4]}}</span>
-                    <p>{{post[2]}}</p>
+
+            {% for user in users %}
+                <div class="user">
+                   {% for user in users %}
+                        <h5> User  {{ user.user_id }}, 
+                            age {{ user.age }} 
+                            has {{ user.rating|length}} ratings
+                        </h5>
                 </div>
             {% endfor %}
-            {% endif %}
         </div>
     </div>
 </div>
