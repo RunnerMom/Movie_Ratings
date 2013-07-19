@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
+
 <div class="container">
     <div class="row">
         <div class="span12">
@@ -23,16 +24,15 @@
 
         <div class="span8">
 
-            {% for user in users %}
                 <div class="user">
                    {% for user in users %}
                         <h5> User  {{ user.user_id }}, 
                             age {{ user.age }} 
                             has {{ user.rating|length}} ratings
                         </h5>
+                    {% endfor %}
                 </div>
-            {% endfor %}
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock %} 
