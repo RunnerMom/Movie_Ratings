@@ -11,9 +11,11 @@
 <div class="span8">
                 <div class="user">
                    {% for user in users %}
-                        <h5> User  {{ user.user_id }}, 
-                            age {{ user.age }} 
-                            has {{ user.rating|length}} ratings
+                        <h5> <a href="/user_ratings?user_id={{user.user_id}}">
+                                User  {{ user.user_id }}
+                            </a>, 
+                                age {{ user.age }} 
+                                has {{ user.rating|length}} ratings
                         </h5>
                     {% endfor %}
                 </div>
