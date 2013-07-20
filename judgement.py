@@ -38,8 +38,9 @@ def show_users():
 
 # click on a user and view list of movies they've rated, as well as the ratings
 @app.route("/user_ratings")
-def show_user_ratings(user_id):
-    ratings_list = model.session.query(model.Ratings).filter_by(user_id=user_id)
+def show_user_ratings():
+    user_id = request.args.get("user_id")
+    ratings_list = model.session.query(model.Rating).filter_by(user_id=user_id)
     return render_template("user_ratings.html", user_id=user_id, ratings_list=ratings_list)
 
 # be able to log in as a user
