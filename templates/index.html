@@ -28,13 +28,13 @@
         </span>
     </a>
 </div>
+<p>
         <div class="span8">
 
-                <div class="user">
-                   {% for user in users %}
-                        <h5> User  {{ user.user_id }}, 
-                            age {{ user.age }} 
-                            has {{ user.rating|count}} ratings
+                <div class="movie">
+                    Movies Reviewed on this site:
+                   {% for movie in movies %}
+                        <h5>{{ movie.name }} 
                         </h5>
                     {% endfor %}
                 </div>
