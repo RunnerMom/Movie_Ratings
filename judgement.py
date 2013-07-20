@@ -13,8 +13,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    user_list = model.session.query(model.User).limit(20).all()
-    return render_template("index.html", users=user_list)
+    movie_list = model.session.query(model.Movie).all()
+    return render_template("index.html", movies=movie_list)
 
 
 # ASSIGNMENT: build out some CRUDL-style views for User and Ratings objects
