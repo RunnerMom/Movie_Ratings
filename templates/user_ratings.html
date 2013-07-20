@@ -16,12 +16,10 @@
                             <th>Movie Title</th>
                             <th>Rating</th>
                         </tr></h3>
-  
-                            {% for rating in ratings %}
+                              {% for rating in ratings_list %}
                          <tr><h5>
                             <td>{{rating.movie_id}}</td>  
                             <td>"na"</td>  
-                            <td><a href = "http://localhost:5000/student?github={{row[2]}}">{{row[2]}}</a></td>
                             <td>{{rating.rating}}</td>
                         </tr></h5>
                             {% endfor %}
