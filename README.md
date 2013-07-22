@@ -12,4 +12,7 @@ judgement.py is the app server that can be run by typing "python judgement.py"
 add + icon back to front page
 
 7.22.2013
-finish page 2 of assignment
+finish page 2 of assignment:
+log in page
+click on user and view list of their ratings
+add or update a personal rating for that movie
