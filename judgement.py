@@ -23,7 +23,8 @@ def index():
 def login():
     user_id = request.args.get("user_id")
     password = request.args.get("password")
-    return render_template("loggedin.html", user_id=user_id)
+    ratings_list = model.session.query(model.Rating).filter_by(user_id=user_id)
+    return render_template("loggedin.html", user_id=user_id, ratings_list=ratings_list)
 
 @app.route("/add_user")
 def add_user():
