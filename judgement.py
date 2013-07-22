@@ -23,7 +23,7 @@ def index():
 def login():
     user_id = request.args.get("user_id")
     password = request.args.get("password")
-    ratings_list = model.session.query(model.Rating).filter_by(user_id=user_id)
+    ratings_list = model.session.query(model.Rating).filter_by(user_id=user_id).order_by(model.Rating.movie_id)
     return render_template("loggedin.html", user_id=user_id, ratings_list=ratings_list)
 
 @app.route("/add_user")
@@ -52,6 +52,17 @@ def show_user_ratings():
     return render_template("user_ratings.html", user_id=user_id, ratings_list=ratings_list)
 
 # when logged in, be able to add or update a personal rating for a movie.
+@app.route("/change_rating")
+def change_rating():
+    movie_id=request.args.get("movie_id")
+    movie_name=model.session.query(model.Movie).get(movie_id)
+    user_id=request.args.get("user_id")
+    rating=request.args.get("rating")
+    rating=model.Rating(id=id, user_id=user_id, movie_id=movie_id, rating=rating)
+    model.session.add(rating)
+    model.session.commit()
+    return render_template("change_rating.html", movie_id=movie_id, movie_name=movie_name, user_id=user_id)
+
 @app.route("/add_rating")
 def add_rating():
     user_id = request.args.get("user_id")
