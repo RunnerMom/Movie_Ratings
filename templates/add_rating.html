@@ -7,20 +7,27 @@
         <div class="span12">
             <h1 class="header">Rate a Movie!</h1>
         </div>
-        <div class = "span5">
+        <div class = "span3">
             <h2>You are logged in as user: {{user_id}}</h2>
         <div class="span3">
-<p>
+<p>        <div class="span4">
+            <h3><i img="icon-plus-sign.jpg"></i> Add User</h3>
+            <form action="/rating_added">
+                <input type="text" name="movie_id" placeholder="Movie ID" />
+                <br />
+                <input type="text" name="movie_name" placeholder="Movie Name" />
+                <br />
+                <input type="text" name="Rating" placeholder="Rating (1-5)" />
+                <br />
+                <input class="btn" type="submit" value="Add Rating" />
+            </form>
+        </div>
         <div class="span8">
 
-                <div class="movie">
-                    Movies already Reviewed by user: {{user_id}}:
-                   {% for movie in movies %}
-                        <h5>{{ movie.name }} 
-                        </h5>
-                    {% endfor %}
+
+                <div>
+   
+ {% endblock %}
+
                 </div>
-        </div>
-    </div>
 </div>
-{% endblock %} 
