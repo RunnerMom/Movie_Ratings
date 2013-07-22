@@ -10,7 +10,9 @@ session = scoped_session(sessionmaker(bind=engine, autocommit=False, autoflush=F
 Base = declarative_base()
 Base.query = session.query_property()
 
-### Class declarations go here
+""" 
+The 3 classes below are tables in our ratings.db
+"""
 class User(Base):
     __tablename__ = "users"
 
