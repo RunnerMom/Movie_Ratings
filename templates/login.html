@@ -1,0 +1,40 @@
+
+
+<div class ="header", style="font-family: 'Tangerine', serif; font-size:36px;">
+    <h2>Login Page {{user_id}}</h2>
+    <p>
+</div>
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="span8">
+                <div>
+                    <table border="1">
+                        <tr><h3>
+                            <th>Movie ID</th>
+                            <th>Movie Title</th>
+                            <th>Rating</th>
+                        </tr></h3>
+                              {% for rating in ratings_list %}
+                         <tr><h5>
+                            <td>{{rating.movie_id}}</td>  
+                            <td>{{rating.movie.name}}</td>  
+                            <td>{{rating.rating}}</td>
+                        </tr></h5>
+                            {% endfor %}
+ 
+                    </table>
+                </div>
+</div>
+
+
+<div class = "container">
+    <a href="/" class="url fn" itemprop="url" rel="author">
+        <span itemprop="title">
+        RETURN TO HOME
+        </span>
+    </a>
+</div>
+
+{% endblock %}
