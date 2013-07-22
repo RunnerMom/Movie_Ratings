@@ -21,7 +21,9 @@ def index():
 
 @app.route("/login")
 def login():
-    pass
+    user_id = request.args.get("user_id")
+    password = request.args.get("password")
+    return render_template("loggedin.html", user_id=user_id)
 
 @app.route("/add_user")
 def add_user():
