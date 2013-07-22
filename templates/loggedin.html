@@ -5,10 +5,10 @@
     <p>
 </div>
 <div class = "container">
-    <a href="/add_rating" class="url fn" itemprop="url" rel="author">
+    <a href="/add_rating?user_id={{user_id}}" class="url fn" itemprop="url" rel="author">
         <span itemprop="title">
         RATE ANOTHER MOVIE
-        </span>
+        </span></a>
     <h4 class="container">
     <h5>Your ratings</h5>
     <p>
@@ -29,7 +29,7 @@
                          <tr><h5>
                             <td>{{rating.movie_id}}</td>  
                             <td>{{rating.movie.name}}</td>  
-                            <td>{{rating.rating}}</td>
+                            <td><a href=/change_rating?movie_id={{rating.movie_id}}>{{rating.rating}}</td></a>
                         </tr></h5>
                             {% endfor %}
  
