@@ -6,26 +6,22 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String, Date
 from sqlalchemy.orm import sessionmaker
-
+"""
+This program is built to load 3 specific data sets that were included in the assigment:
+u.load_users - > user data
+u.items -> movie data
+u.data -> ratings data
+"""
 def convert_date_string(date_string):
-    # print date_string
     dt = datetime.strptime(date_string, "%d-%b-%Y")
     return dt.date()
 
 def convert_epoch_time(date_string):
- 
-    epoch = datetime.fromtimestamp(int(date_string))
-  #  print epoch.date()
-    return epoch
+     epoch = datetime.fromtimestamp(int(date_string))
+     return epoch
 
 def load_users(session):
-    # open file
-    # read file
-    #parse a line
-    #create an object
-    # add object to a session
-    # commit
-    # repeat until done
+
     with open('seed_data/u.user') as csvfile:
         userdata = csv.reader(csvfile, delimiter='|')
         for row in userdata:
@@ -34,7 +30,6 @@ def load_users(session):
         session.commit()
 
 def load_movies(session):
-    # use u.item
     with open('seed_data/u.item') as csvfile:
         movie_data = csv.reader(csvfile, delimiter='|')
         print ("Loading movie db. This could take several minutes")
@@ -61,7 +56,6 @@ def load_movies(session):
         session.commit()
 
 def load_ratings(session):
-    # use u.data
     with open('seed_data/u.data') as csvfile:
         ratings_data = csv.reader(csvfile, delimiter='\t')
         for row in ratings_data:
@@ -69,11 +63,10 @@ def load_ratings(session):
             row_timestamp=row[3]
             new_timestamp = convert_epoch_time(row_timestamp)
 
-           #  print type(row_timestamp)
             ratings_record = model.Rating(user_id=row[0], movie_id=row[1], rating=row[2], timestamp=new_timestamp)
             session.add(ratings_record)
         session.commit()
-           
+         
 def main(session):
     # You'll call each of the load_* functions with the session as an argument
     load_users(session)
