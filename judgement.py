@@ -19,6 +19,10 @@ def index():
     movie_list = model.session.query(model.Movie).all()
     return render_template("index.html", movies=movie_list)
 
+@app.route("/login")
+def login():
+    pass
+
 @app.route("/add_user")
 def add_user():
     age = request.args.get("age")
