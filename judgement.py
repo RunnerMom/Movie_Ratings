@@ -34,8 +34,8 @@ def add_user():
 @app.route("/users")
 def show_users():
     user_list = model.session.query(model.User).all()
-    ratings_list = model.session.query(model.Rating).all()
-    return render_template("users.html", users=user_list, ratings=ratings_list)
+    # ratings_list = model.session.query(model.Rating).all()
+    return render_template("users.html", users=user_list)
 
 # click on a user and view list of movies they've rated, as well as the ratings
 @app.route("/user_ratings")
