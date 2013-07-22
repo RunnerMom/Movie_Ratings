@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <h1 class="header">Rate a Movie!</h1>
+        </div>
+        <div class = "span5">
+            <h2>You are logged in as user: {{user_id}}</h2>
+        <div class="span3">
+<p>
+        <div class="span8">
+
+                <div class="movie">
+                    Movies already Reviewed by user: {{user_id}}:
+                   {% for movie in movies %}
+                        <h5>{{ movie.name }} 
+                        </h5>
+                    {% endfor %}
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
