@@ -48,11 +48,15 @@ def show_users():
 @app.route("/user_ratings")
 def show_user_ratings():
     user_id = request.args.get("user_id")
-    ratings_list = model.session.query(model.Rating).filter_by(user_id=user_id)
+    ratings_list = model.session.query(model.Rating).filter_by(user_id=user_id).order_by(model.Rating.movie_id)
     return render_template("user_ratings.html", user_id=user_id, ratings_list=ratings_list)
 
-# be able to log in as a user
 # when logged in, be able to add or update a personal rating for a movie.
+@app.route("/add_rating")
+def add_rating():
+    user_id = request.args.get("user_id")
+    return render_template("add_rating.html", user_id=user_id)
+
 
 if __name__== "__main__":
     app.run(debug=True)
