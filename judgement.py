@@ -54,20 +54,35 @@ def show_user_ratings():
 # when logged in, be able to add or update a personal rating for a movie.
 @app.route("/change_rating")
 def change_rating():
-    movie_id=request.args.get("movie_id")
-    movie_name=model.session.query(model.Movie).get(movie_id)
-    user_id=request.args.get("user_id")
-    rating=request.args.get("rating")
-    rating=model.Rating(id=id, user_id=user_id, movie_id=movie_id, rating=rating)
-    model.session.add(rating)
-    model.session.commit()
-    return render_template("change_rating.html", movie_id=movie_id, movie_name=movie_name, user_id=user_id)
+    rating_object=model.session.query(model.Rating).get(request.args.get("rating_id"))
+    movie=model.session.query(model.Movie).get(rating_object.movie_id)
+    user_rating=request.args.get("rating", False)
+    if user_rating:
+        rating_object.rating=user_rating
+        model.session.add(rating_object)
+        model.session.commit()
+    return render_template("change_rating.html",
+                            rating_id=rating_object.rating, 
+                            user_id=rating_object.user_id, 
+                            movie_id=rating_object.movie_id,
+                            movie=movie.name)
 
 @app.route("/add_rating")
 def add_rating():
     user_id = request.args.get("user_id")
     return render_template("add_rating.html", user_id=user_id)
 
-
+@app.route("/rating_added")
+def rating_added():
+    rating_id=request.args.get("rating_id")
+    rating=request.args.get("rating")
+    rating_object=model.session.query(model.Rating).get("rating_id")
+    movie=model.session.query(model.Movie).get(rating_object.movie_id)
+    return render_template("rating_added.html",
+                            rating_id=rating_id, 
+                            rating = rating,
+                            user_id=rating_object.user_id, 
+                            movie_id=rating_object.movie_id,
+                            movie=movie.name)
 if __name__== "__main__":
     app.run(debug=True)
