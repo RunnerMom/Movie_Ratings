@@ -7,24 +7,21 @@
         <div class="span12">
             <h1 class="header">Rate a Movie!</h1>
         </div>
-        <div class = "span3">
+        <div class = "span8">
             <h2>You are logged in as user: {{user_id}}</h2>
-        <div class="span3">
-<p>        <div class="span4">
-            <h3><i img="icon-plus-sign.jpg"></i> Change Rating</h3>
-            <form action="/change_rating">
-                <br />
-                <input type="text" name="Rating" placeholder="Rating (1-5)" />
-                <br />
-                <input class="btn" type="submit" value="Add Rating" />
-            </form>
+            <div class="span3">
+                <h3><i img="icon-plus-sign.jpg"></i> Change Rating for Movie # {{movie_id}} {{movie}}</h3>
+                <form action="/rating_added">
+                    <input type="hidden" name="rating_id" value="{{rating_id}}"/>
+                    <br />
+                    <input type="text" name="rating" placeholder="Rating (1-5)" />
+                    <br />
+                    <input class="btn" type="submit" value="Change Rating" />
+                </form>
+            </div>
         </div>
-        <div class="span8">
-
-
-                <div>
-   
- {% endblock %}
-
-                </div>
+    </div>
 </div>
+
+
+{% endblock %}
